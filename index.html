@@ -443,6 +443,7 @@
     <p>We're onboarding a small group of developers for early access. Tell us your email and, if you want, what you're building against.</p>
     <form class="waitlist" id="waitlist-form" action="https://formspree.io/f/xvkodblw" method="POST">
       <input type="email" name="email" placeholder="you@domain.com" required aria-label="Email address">
+      <input type="hidden" name="source" id="source-field" value="direct">
       <button type="submit" class="btn">Join the waitlist</button>
     </form>
     <p class="form-success" id="form-success">You're on the list — we'll be in touch.</p>
@@ -467,6 +468,10 @@
   // no backend needed) or swap in any other form backend of your choice.
   const form = document.getElementById('waitlist-form');
   const success = document.getElementById('form-success');
+  const sourceField = document.getElementById('source-field');
+const params = new URLSearchParams(window.location.search);
+const src = params.get('src');
+if (src) { sourceField.value = src; }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
