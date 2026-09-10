@@ -364,8 +364,8 @@
 
 <section class="hero wrap">
   <div>
-    <h1>Your extension depends on websites you don't control.</h1>
-    <p class="lede">Watchtower watches the parts of the page your code relies on, and tells you the moment they change — before your users file the bug report.</p>
+    <h1 id="hero-headline">Your extension depends on websites you don't control.</h1>
+<p class="lede" id="hero-lede">Watchtower watches the parts of the page your code relies on, and tells you the moment they change — before your users file the bug report.</p>
     <div class="hero-actions">
       <a href="#waitlist" class="btn">Join the waitlist</a>
       <span class="hero-meta">no code changes required to try it</span>
@@ -444,6 +444,7 @@
     <form class="waitlist" id="waitlist-form" action="https://formspree.io/f/xvkodblw" method="POST">
       <input type="email" name="email" placeholder="you@domain.com" required aria-label="Email address">
       <input type="hidden" name="source" id="source-field" value="direct">
+      <input type="hidden" name="variant" id="variant-field" value="alert">
       <button type="submit" class="btn">Join the waitlist</button>
     </form>
     <p class="form-success" id="form-success">You're on the list — we'll be in touch.</p>
@@ -472,6 +473,7 @@
 const params = new URLSearchParams(window.location.search);
 const src = params.get('src');
 if (src) { sourceField.value = src; }
+  const variantField = document.getElementById('variant-field'); const v = params.get('v'); if (v === 'map') { document.getElementById('hero-headline').textContent = "Get a live map of the web pages your code depends on."; document.getElementById('hero-lede').textContent = "Watchtower gives you a structural map of the interface — where things are, what changed, what moved — and you decide what to do with it. No black-box alerts, just the data."; variantField.value = 'map'; }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
